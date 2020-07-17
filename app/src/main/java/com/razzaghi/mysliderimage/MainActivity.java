@@ -1,5 +1,6 @@
 package com.razzaghi.mysliderimage;
 
+import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -34,11 +35,10 @@ public class MainActivity extends AppCompatActivity {
     private Handler handler = new Handler();
 
     private static String[] array_image_place = {
-            "https://image.freepik.com/free-vector/technology-banner-background-with-hexagonal-shapes-text-space_1017-22589.jpg",
-            "https://image.freepik.com/free-vector/technology-banner-background-with-hexagonal-shapes-text-space_1017-22589.jpg",
-            "https://image.freepik.com/free-vector/technology-banner-background-with-hexagonal-shapes-text-space_1017-22589.jpg",
-            "https://image.freepik.com/free-vector/technology-banner-background-with-hexagonal-shapes-text-space_1017-22589.jpg",
-            "https://image.freepik.com/free-vector/technology-banner-background-with-hexagonal-shapes-text-space_1017-22589.jpg",
+            "https://dkstatics-public.digikala.com/digikala-adservice-banners/e23df5bcf003f8d2f7e1e1ab2170df878a0ba3eb_1594410854.jpg?x-oss-process=image/quality,q_80",
+            "https://dkstatics-public.digikala.com/digikala-adservice-banners/e23df5bcf003f8d2f7e1e1ab2170df878a0ba3eb_1594410854.jpg?x-oss-process=image/quality,q_80",
+            "https://i.pinimg.com/236x/15/b1/e7/15b1e7af0c64dcde90f4375a1df9a80b.jpg",
+            "https://i.pinimg.com/236x/15/b1/e7/15b1e7af0c64dcde90f4375a1df9a80b.jpg",
     };
 
     private static String[] array_title_place = {
@@ -204,9 +204,6 @@ public class MainActivity extends AppCompatActivity {
         if (runnable != null) handler.removeCallbacks(runnable);
         super.onDestroy();
     }
-
-
-
     public static void displayImageFromUrl(Context ctx, ImageView img, String drawable) {
         try {
             Glide.with(ctx).load(drawable)
