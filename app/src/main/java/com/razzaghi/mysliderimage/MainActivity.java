@@ -1,30 +1,21 @@
 package com.razzaghi.mysliderimage;
 
-import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.balysv.materialripple.MaterialRippleLayout;
 import com.bumptech.glide.Glide;
@@ -43,10 +34,11 @@ public class MainActivity extends AppCompatActivity {
     private Handler handler = new Handler();
 
     private static String[] array_image_place = {
-            "https://dkstatics-public.digikala.com/digikala-adservice-banners/e23df5bcf003f8d2f7e1e1ab2170df878a0ba3eb_1594410854.jpg?x-oss-process=image/quality,q_80",
-            "https://dkstatics-public.digikala.com/digikala-adservice-banners/e23df5bcf003f8d2f7e1e1ab2170df878a0ba3eb_1594410854.jpg?x-oss-process=image/quality,q_80",
-            "https://i.pinimg.com/236x/15/b1/e7/15b1e7af0c64dcde90f4375a1df9a80b.jpg",
-            "https://i.pinimg.com/236x/15/b1/e7/15b1e7af0c64dcde90f4375a1df9a80b.jpg",
+            "https://image.freepik.com/free-vector/technology-banner-background-with-hexagonal-shapes-text-space_1017-22589.jpg",
+            "https://image.freepik.com/free-vector/technology-banner-background-with-hexagonal-shapes-text-space_1017-22589.jpg",
+            "https://image.freepik.com/free-vector/technology-banner-background-with-hexagonal-shapes-text-space_1017-22589.jpg",
+            "https://image.freepik.com/free-vector/technology-banner-background-with-hexagonal-shapes-text-space_1017-22589.jpg",
+            "https://image.freepik.com/free-vector/technology-banner-background-with-hexagonal-shapes-text-space_1017-22589.jpg",
     };
 
     private static String[] array_title_place = {
@@ -66,38 +58,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //initToolbar();
         initComponent();
     }
-/*
-    private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_menu);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Places");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-       setSystemBarColor(this);
-    }*/
 
     private void initComponent() {
         layout_dots = (LinearLayout) findViewById(R.id.layout_dots);
         viewPager = (ViewPager) findViewById(R.id.pager);
-        adapterImageSlider = new AdapterImageSlider(this, new ArrayList<Image2>());
+        adapterImageSlider = new AdapterImageSlider(this, new ArrayList<Image>());
 
-        final List<Image2> items = new ArrayList<>();
+        final List<Image> items = new ArrayList<>();
         for (int i = 0; i < array_image_place.length; i++) {
-            Image2 obj = new Image2();
+            Image obj = new Image();
             obj.image = array_image_place[i];
-            //obj.imageDrw = getResources().getDrawable(Integer.parseInt(obj.image));
             obj.name = array_title_place[i];
             obj.brief = array_brief_place[i];
             items.add(obj);
-
-
-            Log.i("TAG", "initComponent: "+obj.image);
-            Log.i("TAG", "initComponent: "+obj.name);
-            Log.i("TAG", "initComponent: "+obj.brief);
-
 
         }
 
@@ -166,13 +141,12 @@ public class MainActivity extends AppCompatActivity {
     private static class AdapterImageSlider extends PagerAdapter {
 
         private Activity act;
-        //private List<Image> items;
-        private List<Image2> items2;
+        private List<Image> items2;
 
         private AdapterImageSlider.OnItemClickListener onItemClickListener;
 
         private interface OnItemClickListener {
-            void onItemClick(View view, Image2 obj);
+            void onItemClick(View view, Image obj);
         }
 
         public void setOnItemClickListener(AdapterImageSlider.OnItemClickListener onItemClickListener) {
@@ -180,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // constructor
-        private AdapterImageSlider(Activity activity, List<Image2> items) {
+        private AdapterImageSlider(Activity activity, List<Image> items) {
             this.act = activity;
             this.items2 = items;
         }
@@ -190,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
             return this.items2.size();
         }
 
-        public void setItems(List<Image2> items) {
+        public void setItems(List<Image> items) {
             this.items2 = items;
             notifyDataSetChanged();
         }
@@ -202,15 +176,13 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            //final Image o = items.get(position);
-            final Image2 o2 = items2.get(position);
+            final Image o2 = items2.get(position);
             Log.i("TAG", "instantiateItem: "+o2);
             LayoutInflater inflater = (LayoutInflater) act.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View v = inflater.inflate(R.layout.item_slider_image, container, false);
 
             ImageView image =  v.findViewById(R.id.image);
             MaterialRippleLayout lyt_parent =  v.findViewById(R.id.lyt_parent);
-            //displayImageOriginal(act, image, o.image);
             displayImageFromUrl(act, image, o2.image);
             Log.i("TAG", "instantiateItem: "+o2.image);
 
@@ -234,15 +206,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public static void displayImageOriginal(Context ctx, ImageView img, @DrawableRes int drawable) {
-        try {
-            Glide.with(ctx).load(drawable)
-                    .crossFade()
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .into(img);
-        } catch (Exception e) {
-        }
-    }
 
     public static void displayImageFromUrl(Context ctx, ImageView img, String drawable) {
         try {
@@ -250,7 +213,6 @@ public class MainActivity extends AppCompatActivity {
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(img);
-            Log.i("TAG", "displayImageFromUrl: "+drawable);
         } catch (Exception e) {
             Log.e("TAG", "displayImageFromUrl: "+e.toString());
         }
