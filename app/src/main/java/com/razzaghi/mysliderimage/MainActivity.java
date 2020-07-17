@@ -35,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
     private Handler handler = new Handler();
 
     private static String[] array_image_place = {
-            "https://dkstatics-public.digikala.com/digikala-adservice-banners/e23df5bcf003f8d2f7e1e1ab2170df878a0ba3eb_1594410854.jpg?x-oss-process=image/quality,q_80",
-            "https://dkstatics-public.digikala.com/digikala-adservice-banners/e23df5bcf003f8d2f7e1e1ab2170df878a0ba3eb_1594410854.jpg?x-oss-process=image/quality,q_80",
-            "https://i.pinimg.com/236x/15/b1/e7/15b1e7af0c64dcde90f4375a1df9a80b.jpg",
-            "https://i.pinimg.com/236x/15/b1/e7/15b1e7af0c64dcde90f4375a1df9a80b.jpg",
+            "https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-gorgeous-technology-dot-line-structure-banner-background-image_210889.jpg",
+            "https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-gorgeous-technology-dot-line-structure-banner-background-image_210889.jpg",
+            "https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-gorgeous-technology-dot-line-structure-banner-background-image_210889.jpg",
+            "https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-gorgeous-technology-dot-line-structure-banner-background-image_210889.jpg",
     };
 
     private static String[] array_title_place = {
