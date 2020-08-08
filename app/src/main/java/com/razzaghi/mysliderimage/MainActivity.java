@@ -1,5 +1,6 @@
 package com.razzaghi.mysliderimage;
 
+import androidx.annotation.Dimension;
 import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
@@ -7,9 +8,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
     private AdapterImageSlider adapterImageSlider;
     private Runnable runnable = null;
     private Handler handler = new Handler();
+
+    int width_phone;
+    int height_phone;
+    int width_height;
 
     private static String[] array_image_place = {
             "https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-gorgeous-technology-dot-line-structure-banner-background-image_210889.jpg",
@@ -110,7 +117,17 @@ public class MainActivity extends AppCompatActivity {
         layout_dots.removeAllViews();
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new ImageView(this);
-            int width_height = 25;
+            getSizeScreen();
+            /*if (width_phone<=480 && height_phone<=800){
+                 width_height = 13;
+
+            }else if (width_phone<=720 && height_phone<=1184){
+                width_height = 20;
+            }
+            else {
+
+                 width_height = 25;
+            }*/
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(new ViewGroup.LayoutParams(width_height, width_height));
             params.setMargins(10, 10, 10, 10);
             dots[i].setLayoutParams(params);
@@ -215,5 +232,31 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void getSizeScreen(){
+
+        Display screensize = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        screensize.getSize(size);
+         width_phone  = size.x;
+         height_phone = size.y;
+
+
+
+        if (width_phone<=480 && height_phone<=800){
+            width_height = 13;
+
+        }else if (width_phone<=720 && height_phone<=1184){
+            width_height = 20;
+        }
+        else {
+
+            width_height = 25;
+        }
+
+
+        Log.i("TAG", "getSizeScreen: \n width="+width_phone+"\n"+"height="+height_phone);
+
+
+    }
 
 }
