@@ -20,6 +20,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_margin="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Number 1"/>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -40,6 +51,7 @@
                         android:background="@color/grey_20"
                         android:foreground="@color/overlay_dark_10" />
 
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -47,10 +59,10 @@
                         android:layout_centerHorizontal="true"
                         android:background="@drawable/bg_gradient"
                         android:orientation="vertical"
-                        android:paddingBottom="@dimen/spacing_mlarge"
-                        android:paddingLeft="@dimen/spacing_large"
-                        android:paddingRight="@dimen/spacing_large"
-                        android:paddingTop="@dimen/spacing_mxlarge">
+                        android:paddingBottom="20dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingTop="25dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -68,18 +80,10 @@
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/spacing_middle"
+                                android:layout_marginTop="10dp"
                                 android:gravity="center"
                                 android:orientation="horizontal">
 
-                                <ImageView
-                                    android:layout_width="@dimen/spacing_large"
-                                    android:layout_height="@dimen/spacing_large"
-                                    android:layout_marginEnd="@dimen/spacing_medium"
-                                    android:layout_marginRight="@dimen/spacing_medium"
-                                    android:tint="@color/grey_10"
-                                    app:srcCompat="@drawable/ic_location"
-                                    tools:ignore="VectorDrawableCompat" />
 
                                 <TextView
                                     android:id="@+id/brief"
@@ -113,40 +117,59 @@
 
             <View
                 android:layout_width="0dp"
-                android:layout_height="@dimen/spacing_large" />
+                android:layout_height="10dp" />
+
+        </LinearLayout>
+
+            <View
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/overlay_dark_80"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_large"
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="test"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="@color/grey_90" />
+                    android:text="Number 2"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_middle"
-                    android:lineSpacingExtra="@dimen/spacing_small"
-                    android:text="test"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                    android:textColor="@color/grey_60" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp">
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:id="@+id/viewPager02"/>
+
+
+                    <LinearLayout
+                        android:id="@+id/layoutDots02"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="horizontal"
+                        android:layout_alignParentBottom="true"
+                        />
+
+
+
+
+                </RelativeLayout>
 
 
             </LinearLayout>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="@dimen/spacing_middle" />
 
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

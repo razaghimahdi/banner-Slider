@@ -4,20 +4,26 @@
     android:layout_height="wrap_content"
     android:fitsSystemWindows="false">
 
+    <com.razzaghi.mysliderimage.ZoomLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:adjustViewBounds="true"
+        android:src="@drawable/image_12"
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey_80"
+        android:scaleType="centerCrop" />
+    </com.razzaghi.mysliderimage.ZoomLinearLayout>
     <com.balysv.materialripple.MaterialRippleLayout
+        android:visibility="gone"
         android:id="@+id/lyt_parent"
         style="@style/RippleStyleWhite"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:adjustViewBounds="true"
-            android:src="@drawable/image_12"
-            android:id="@+id/image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/grey_80"
-            android:scaleType="centerCrop" />
 
     </com.balysv.materialripple.MaterialRippleLayout>
 

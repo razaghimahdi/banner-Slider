@@ -1,17 +1,19 @@
 package com.razzaghi.mysliderimage;
 
-import androidx.annotation.Dimension;
-import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +32,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    ViewPager viewPager02;
+    LinearLayout layoutDots02;
+    ViewPagerSliderImage02 viewPagerSliderImage02;
+
+
     private View parent_view;
     private ViewPager viewPager;
     private LinearLayout layout_dots;
@@ -42,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
     int width_height;
 
     private static String[] array_image_place = {
-            "https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-gorgeous-technology-dot-line-structure-banner-background-image_210889.jpg",
-            "https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-gorgeous-technology-dot-line-structure-banner-background-image_210889.jpg",
-            "https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-gorgeous-technology-dot-line-structure-banner-background-image_210889.jpg",
+            "https://www.gettyimages.pt/gi-resources/images/Homepage/Hero/PT/PT_hero_42_153645159.jpg",
+            "https://cdn.jpegmini.com/user/images/slider_puffin_jpegmini_mobile.jpg",
+            "https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg",
             "https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-gorgeous-technology-dot-line-structure-banner-background-image_210889.jpg",
     };
 
@@ -65,10 +72,61 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initComponent();
+        setUpSlider01();
+        setUpSlider02();
     }
 
-    private void initComponent() {
+    private void setUpSlider02() {
+          viewPager02 = findViewById(R.id.viewPager02);
+          layoutDots02 = findViewById(R.id.layoutDots02);
+          viewPagerSliderImage02 = new ViewPagerSliderImage02(MainActivity.this,array_image_place);
+        viewPager02.setAdapter(viewPagerSliderImage02);
+
+        showDots(viewPager02.getCurrentItem());
+        changeDotsColor();
+
+
+    }
+
+
+    private void showDots(int pageNumber) {
+        TextView[] dots = new TextView[viewPager02.getAdapter().getCount()];
+        layoutDots02.removeAllViews();
+        for (int i = 0; i < dots.length; i++) {
+            dots[i] = new TextView(MainActivity.this);
+            dots[i].setText(Html.fromHtml("&#8226;"));
+            dots[i].setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
+            dots[i].setTextColor(ContextCompat.getColor(MainActivity.this,
+                    (i == pageNumber ? R.color.grey_600 : R.color.grey_400)
+            ));
+            layoutDots02.addView(dots[i]);
+        }
+    }
+
+    private void changeDotsColor() {
+
+        viewPager02.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+             @Override
+            public void onPageSelected(int position) {
+                 showDots(position);
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
+
+
+
+    private void setUpSlider01() {
         layout_dots = (LinearLayout) findViewById(R.id.layout_dots);
         viewPager = (ViewPager) findViewById(R.id.pager);
         adapterImageSlider = new AdapterImageSlider(this, new ArrayList<Image>());
